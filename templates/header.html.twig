@@ -15,6 +15,7 @@
         
         <nav>
             <a href="{{ path('app_home') }}">Accueil</a>
+            <a href="{{ path('app_sweatshirt_list') }}">Back-Office</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <a href="{{ path('app_logout') }}">Se déconnecter</a>
             {% else %}

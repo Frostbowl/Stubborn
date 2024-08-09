@@ -1,0 +1,16 @@
+{# templates/sweatshirt/add.html.twig #}
+
+{% extends 'header.html.twig' %}
+
+{% block title %}Ajouter un Sweatshirt{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Sweatshirt</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ form.vars.value.save.label }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_home') }}">Retour à l'accueil</a>
+{% endblock %}
