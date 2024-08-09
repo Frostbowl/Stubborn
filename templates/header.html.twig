@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+</head>
+<body>
+    {% block header %}
+    <header>
+        <figure>
+            <img src="{{ asset('images/Logo.png') }}" alt="Logo Stubborn">
+            <figcaption>Dont't comprimise on your look</figcaption>
+        </figure>
+        
+        <nav>
+            <a href="{{ path('app_home') }}">Accueil</a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+                <a href="{{ path('app_register') }}">Inscription</a>
+            {% endif %}
+        </nav>
+    </header>
+    {% endblock %}
+
+    {% block body %}
+    <!-- Contenu de la page -->
+    {% endblock %}
+
+    <script src="{{ asset('script.js') }}"></script>
+</body>
+</html>
