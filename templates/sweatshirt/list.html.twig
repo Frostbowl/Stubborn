@@ -1,0 +1,46 @@
+{# templates/sweatshirt/list.html.twig #}
+
+{% extends 'header.html.twig' %}
+
+{% block title %}Liste des Sweatshirts{% endblock %}
+
+{% block body %}
+    <h1>Liste des Sweatshirts</h1>
+
+    <a href="{{ path('app_sweatshirt_add') }}" class="btn btn-primary">Ajouter un Sweatshirt</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Stock XS</th>
+                <th>Stock S</th>
+                <th>Stock M</th>
+                <th>Stock L</th>
+                <th>Stock XL</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sweatshirt in sweatshirts %}
+                <tr>
+                    <td>{{ sweatshirt.name }}</td>
+                    <td>{{ sweatshirt.price }}</td>
+                    <td>{{ sweatshirt.stockXs }}</td>
+                    <td>{{ sweatshirt.stockS }}</td>
+                    <td>{{ sweatshirt.stockM }}</td>
+                    <td>{{ sweatshirt.stockL }}</td>
+                    <td>{{ sweatshirt.stockXl }}</td>
+                    <td>
+                        <a href="{{ path('app_sweatshirt_edit', {'id': sweatshirt.id}) }}">Modifier</a>
+                        <form action="{{ path('app_sweatshirt_delete', {'id': sweatshirt.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ sweatshirt.id) }}">
+                            <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sweatshirt ?');">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
