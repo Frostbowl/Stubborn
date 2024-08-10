@@ -1,0 +1,20 @@
+{% extends 'header.html.twig' %}
+
+{% block body %}
+<main class="product-detail">
+    <section class="product-info">
+        <h1>{{ sweatshirt.name }}</h1>
+        {% if sweatshirt.imageName %}
+            <img src="{{ asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}" alt="{{ sweatshirt.name }}" style="max-width: 100%; height: auto;">
+        {% endif %}
+        <p>Prix: {{ sweatshirt.price }} €</p>
+    </section>
+
+    <section class="product-form">
+        <h2>Choisissez votre taille</h2>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </section>
+</main>
+{% endblock %}

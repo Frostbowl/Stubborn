@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class SweatshirtType extends AbstractType
 {
@@ -16,13 +17,13 @@ class SweatshirtType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom du Sweatshirt',
+                'label' => 'Nom',
             ])
             ->add('price', NumberType::class, [
                 'label' => 'Prix',
                 'scale' => 2, // 2 décimales pour les prix
             ])
-            ->add('stockXs', NumberType::class, [
+            ->add('stockXS', NumberType::class, [
                 'label' => 'Stock XS',
             ])
             ->add('stockS', NumberType::class, [
@@ -34,11 +35,13 @@ class SweatshirtType extends AbstractType
             ->add('stockL', NumberType::class, [
                 'label' => 'Stock L',
             ])
-            ->add('stockXl', NumberType::class, [
+            ->add('stockXL', NumberType::class, [
                 'label' => 'Stock XL',
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Ajouter Sweatshirt',
+            ->add('imageFile', FileType::class, [
+                'label' => 'Image du sweatshirt',
+                'required'=> true,
+                'mapped'=> false,
             ]);
     }
 

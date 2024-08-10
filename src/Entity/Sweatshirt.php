@@ -35,6 +35,11 @@ class Sweatshirt
     #[ORM\Column]
     private ?int $stockXL = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $imageName = null;
+
+    //Getters & Setters
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,17 @@ class Sweatshirt
     {
         $this->stockXL = $stockXL;
 
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
         return $this;
     }
 }

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>{% block title %}Mon Site{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/product.css')}}">
+    <link rel="stylesheet" href="{{asset('styles/home.css')}}">
+    <link rel="stylesheet" href="{{asset('styles/login.css')}}">
+    <link rel="stylesheet" href="{{asset('styles/shop.css')}}">
 </head>
 <body>
     {% block header %}
@@ -15,8 +19,10 @@
         
         <nav>
             <a href="{{ path('app_home') }}">Accueil</a>
-            <a href="{{ path('app_sweatshirt_list') }}">Back-Office</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('app_sweatshirt_list') }}">Back-Office</a>
+                <a href="{{ path('app_shop') }}">Boutique</a>
+                <a href="{{ path('app_cart') }}">Panier</a>
                 <a href="{{ path('app_logout') }}">Se déconnecter</a>
             {% else %}
                 <a href="{{ path('app_login') }}">Connexion</a>
@@ -28,6 +34,16 @@
 
     {% block body %}
     <!-- Contenu de la page -->
+    {% endblock %}
+
+    {% block footer %}
+
+    <footer class="information">
+        <h2>Informations de la société</h2>
+        <p>Nom de la société: Stubborn<p>
+        <p>Addresse: Piccadilly Circus, London W1J 0DA, Royaume Uni<p>
+        <p>Addresse de contact stubborn@blabla.com<p>
+    </footer>
     {% endblock %}
 
     <script src="{{ asset('script.js') }}"></script>

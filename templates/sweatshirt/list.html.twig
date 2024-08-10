@@ -2,45 +2,89 @@
 
 {% extends 'header.html.twig' %}
 
-{% block title %}Liste des Sweatshirts{% endblock %}
 
 {% block body %}
-    <h1>Liste des Sweatshirts</h1>
+    <main class="back">
+        {{ form_start(addForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+         <section class="product">
 
-    <a href="{{ path('app_sweatshirt_add') }}" class="btn btn-primary">Ajouter un Sweatshirt</a>
+            <article class="product-add">
+                <label>Photo</label>
+                <img id="imgPreview" src="#" style="display: none; max-width: 200px; max-height: 200px;"/>
+                {{form_widget(addForm.imageFile, {'attr': {'onchange': 'previewImage(event)'}})}}
+            </article>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Stock XS</th>
-                <th>Stock S</th>
-                <th>Stock M</th>
-                <th>Stock L</th>
-                <th>Stock XL</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+            <article class="product-add">
+                {{form_label(addForm.name)}}
+                {{form_widget(addForm.name)}}
+            </article>
+
+            <article class="product-add">
+                {{form_label(addForm.price)}}
+                {{form_widget(addForm.price)}}
+            </article>
+
+            <article class="product-add">
+                {{form_label(addForm.stockXS)}}
+                {{form_widget(addForm.stockXS)}}
+            </article>
+
+            <article class="product-add">
+                {{form_label(addForm.stockS)}}
+                {{form_widget(addForm.stockS)}}
+            </article>
+
+            <article class="product-add">
+                {{form_label(addForm.stockM)}}
+                {{form_widget(addForm.stockM)}}
+            </article>
+
+            <article class="product-add">
+                {{form_label(addForm.stockL)}}
+                {{form_widget(addForm.stockL)}}
+            </article>
+
+            <article class="product-add">
+                {{form_label(addForm.stockXL)}}
+                {{form_widget(addForm.stockXL)}}
+            </article>
+
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </section>
+        {{ form_end(addForm) }}
+
+        <section class="product-list">
             {% for sweatshirt in sweatshirts %}
-                <tr>
-                    <td>{{ sweatshirt.name }}</td>
-                    <td>{{ sweatshirt.price }}</td>
-                    <td>{{ sweatshirt.stockXs }}</td>
-                    <td>{{ sweatshirt.stockS }}</td>
-                    <td>{{ sweatshirt.stockM }}</td>
-                    <td>{{ sweatshirt.stockL }}</td>
-                    <td>{{ sweatshirt.stockXl }}</td>
-                    <td>
-                        <a href="{{ path('app_sweatshirt_edit', {'id': sweatshirt.id}) }}">Modifier</a>
-                        <form action="{{ path('app_sweatshirt_delete', {'id': sweatshirt.id}) }}" method="post" style="display:inline;">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ sweatshirt.id) }}">
-                            <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sweatshirt ?');">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
+                <article class="product-item">
+                    {% if sweatshirt.imageName %}
+                        <img src="{{ asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}" style="max-width: 200px; max-height: 200px;" alt="{{ sweatshirt.name }}"/>
+                    {% endif %}
+                    <h3>{{ sweatshirt.name }}</h3>
+                    <p>Prix: {{ sweatshirt.price }} €</p>
+                    <p>Stock XS: {{ sweatshirt.stockXs }}</p>
+                    <p>Stock S: {{ sweatshirt.stockS }}</p>
+                    <p>Stock M: {{ sweatshirt.stockM }}</p>
+                    <p>Stock L: {{ sweatshirt.stockL }}</p>
+                    <p>Stock XL: {{ sweatshirt.stockXl }}</p>
+                    <button class="btn"><a href="{{ path('app_sweatshirt_edit', {'id': sweatshirt.id}) }}" class="btn btn-edit">Modifier</a></button>
+                    <form action="{{ path('app_sweatshirt_delete', {'id': sweatshirt.id}) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ sweatshirt.id) }}">
+                        <button type="submit" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sweatshirt ?');">Supprimer</button>
+                    </form>
+                </article>
             {% endfor %}
-        </tbody>
-    </table>
+        </section>
+
+        <script>
+            function previewImage(event){
+                var reader = new FileReader();
+                reader.onload = function(){
+                    var output = document.getElementById('imgPreview');
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
+    </main>
 {% endblock %}

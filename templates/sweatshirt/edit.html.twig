@@ -7,9 +7,9 @@
 {% block body %}
     <h1>Modifier un Sweatshirt</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
         {{ form_widget(form) }}
-        <button class="btn">{{ form.vars.value.save.label }}</button>
+        <button class="btn">Enregistrer les modifications</button>
     {{ form_end(form) }}
 
     <a href="{{ path('app_sweatshirt_list') }}">Retour à la liste</a>

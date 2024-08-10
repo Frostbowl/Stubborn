@@ -7,9 +7,9 @@
 {% block body %}
     <h1>Ajouter un Sweatshirt</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
         {{ form_widget(form) }}
-        <button class="btn">{{ form.vars.value.save.label }}</button>
+        <button class="btn">Ajouter</button>
     {{ form_end(form) }}
 
     <a href="{{ path('app_home') }}">Retour à l'accueil</a>

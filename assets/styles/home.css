@@ -1,0 +1,16 @@
+.home-product{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-bottom: 4rem;
+}
+
+.home-product article{
+    border: 1px solid black;
+    padding: 0.4rem;
+}
+
+.information{
+    border-top: 1px solid black;
+    width: 100%;
+}

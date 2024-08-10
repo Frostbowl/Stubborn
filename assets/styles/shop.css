@@ -1,0 +1,29 @@
+.shop-product{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 4rem;
+
+}
+.prod-list{
+    border: 2px solid black;
+    width: 30%;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+}
+
+.mainShop{
+    margin-top: 2rem;
+}
+
+.prod-list img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    padding-left: -2rem;
+}

@@ -1,0 +1,30 @@
+{% extends 'header.html.twig' %}
+
+{% block body %}
+
+<main class="mainShop">
+    <section class="filter">
+        <form method="get" action="{{ path('app_shop') }}">
+            <label for="price_filter"></label>
+            <select id="price_filter" name="price_filter" onchange="this.form.submit()">
+                <option value="all" {% if priceFilter == 'all' %}selected{% endif %}>Tous les prix</option>
+                <option value="10-29" {% if priceFilter == '10-29' %}selected{% endif %}>10 € - 29 €</option>
+                <option value="29-35" {% if priceFilter == '29-35' %}selected{% endif %}>29 € - 35 €</option>
+                <option value="35-50" {% if priceFilter == '35-50' %}selected{% endif %}>35 € - 50 €</option>
+            </select>
+        </form>
+    </section>
+
+    <section class="shop-product">
+        {% for sweatshirt in sweatshirts %}
+            <article class="prod-list">
+                <img src="{{asset ('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}">
+                <h3>{{ sweatshirt.name }}</h3>
+                <p>{{ sweatshirt.price }}</p>
+                <button class="btn"><a href=" {{path('app_product_show', {'id': sweatshirt.id}) }} ">Voir</a></button>
+            </article> 
+        {% endfor %}
+    </section>  
+</main>
+
+{% endblock %}
