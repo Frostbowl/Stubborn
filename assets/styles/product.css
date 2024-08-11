@@ -36,5 +36,53 @@ article input{
     width: 8rem;
 }
 
+.product-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.product-info {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 40%;
+}
 
+.product-info > div {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.product-info > div:last-child {
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Assure que les éléments sont espacés */
+    height: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sizeSelector {
+    margin-bottom: auto; /* Place le sélecteur en haut */
+}
+
+.sizeSelector select {
+    width: 100%; /* S'assure que le sélecteur prend toute la largeur */
+}
+
+.sizeSelector form button[type="submit"]{
+    position: absolute;
+    right:38rem;
+    bottom:28rem;
+}

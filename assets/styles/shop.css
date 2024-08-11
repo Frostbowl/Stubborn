@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: start;
     margin-top: 4rem;
+    width: 80%;
 
 }
 .prod-list{
@@ -17,6 +18,9 @@
 
 .mainShop{
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .prod-list img {
@@ -26,4 +30,9 @@
     height: auto;
     margin-top: 1rem;
     padding-left: -2rem;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
 }

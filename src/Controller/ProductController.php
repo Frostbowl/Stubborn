@@ -32,7 +32,7 @@ class ProductController extends AbstractController
                     'L'=>'L',
                     'XL'=>'XL',
                 ],
-                'label'=> 'Sélectionnez la taille',
+                'label'=> 'Taille ',
                 'expanded'=>false,
                 'multiple'=> false,
             ])

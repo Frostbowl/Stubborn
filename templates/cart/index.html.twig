@@ -2,47 +2,47 @@
 
 {% block body %}
 <main>
-    <section class="cart">
-        {% if sweatshirts is not empty %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Nom</th>
-                        <th>Prix</th>
-                        <th>Taille</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in sweatshirts %}
-                        <tr>
-                            <td>
-                                {% if item.sweatshirt.imageName %}
-                                    <img src="{{ asset('uploads/images/sweatshirts/' ~ item.sweatshirt.imageName) }}" alt="{{ item.sweatshirt.name }}" style="max-width: 100px;">
-                                {% endif %}
-                            </td>
-                            <td>{{ item.sweatshirt.name }}</td>
-                            <td>{{ item.sweatshirt.price }} €</td>
-                            <td>{{ item.size }}</td>
-                            <td>
-                                <form action="{{ path('app_cart') }}" method="post" style="display:inline;">
-                                    <input type="hidden" name="remove_id" value="{{ item.sweatshirt.id }}">
-                                    <button type="submit" class="btn btn-remove">Retirer du panier</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
 
-            <div class="cart-summary">
-                <p>Total : {{ total }} €</p>
-                <a href="{{ path('app_shop') }}" class="btn btn-continue">Continuer mes achats</a>
-            </div>
-        {% else %}
-            <p>Votre panier est vide.</p>
-        {% endif %}
+    {% if sweatshirts is not empty %}
+        <section class="cart">
+            {% for item in sweatshirts %}
+                <article class="cart-item">
+                    {% if item.sweatshirt.imageName %}
+                        <img src=" {{ asset('uploads/images/sweatshirts/' ~ item.sweatshirt.imageName) }} ">
+                    {% endif %}
+                    <div>
+                        <h3>Nom</h3>
+                        <p> {{item.sweatshirt.name}} </p>
+                    </div>
+
+                    <div>
+                        <h3>Prix</h3>
+                        <p>{{item.sweatshirt.price}} €</p>
+                    </div>
+
+                    <div>
+                        <h3>Taille</h3>
+                        <p>{{item.size}}</p>
+                    </div>
+                    <form action="{{ path('app_cart') }}" method="post" style="display:inline;">
+                        <input type="hidden" name="remove_id" value="{{ item.sweatshirt.id }}">
+                        <button type="submit" class="btn btn-remove">Retirer du panier</button>
+                    </form>
+                </article>
+            {% endfor %}
+        </section>
+    <section class="cartBottom">
+        <div>
+            <p>Total: {{total}} €</p>
+        </div>
+        <div class="cartBtn">
+            <button class="end">Finaliser ma commande</button>
+            <button class="continue"><a href="{{path('app_shop') }}">Continuer mes achats</a></button>
+        </div>
     </section>
+    {% else %}
+        <p>Votre panier est vide</p>
+    {% endif %}
+
 </main>
 {% endblock %}

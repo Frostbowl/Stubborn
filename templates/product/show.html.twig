@@ -3,18 +3,25 @@
 {% block body %}
 <main class="product-detail">
     <section class="product-info">
-        <h1>{{ sweatshirt.name }}</h1>
-        {% if sweatshirt.imageName %}
-            <img src="{{ asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}" alt="{{ sweatshirt.name }}" style="max-width: 100%; height: auto;">
-        {% endif %}
-        <p>Prix: {{ sweatshirt.price }} €</p>
-    </section>
 
-    <section class="product-form">
-        <h2>Choisissez votre taille</h2>
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-        {{ form_end(form) }}
+        <div>
+            {% if sweatshirt.imageName %}
+                <img src="{{ asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}" alt="{{ sweatshirt.name }}" style="max-width: 100%; height: auto;">
+            {% endif %}
+        </div>
+
+        <div>
+            <h1>{{ sweatshirt.name }}</h1>
+            <p>Prix: {{ sweatshirt.price }} €</p>
+        </div>
+
+        <div class="sizeSelector">
+            {{ form_start(form) }}
+                {{ form_widget(form.size) }}  <!-- Le sélecteur de taille -->
+                {{ form_widget(form.submit) }} <!-- Le bouton -->
+            {{ form_end(form) }}
+        </div>
+
     </section>
 </main>
 {% endblock %}

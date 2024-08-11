@@ -39,12 +39,26 @@ nav {
 }
 nav a{
     text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+    color: black;
 }
 header img {
     width: 10rem;
 }
 
 nav a:hover{
+    text-decoration: underline;
+    color: red;
+}
+
+nav a:focus{
+    color: red;
+    text-decoration: underline;
+}
+
+nav a.active {
+    color: red;
     text-decoration: underline;
 }
 

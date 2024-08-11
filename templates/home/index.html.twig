@@ -9,7 +9,7 @@
                 <img src="{{asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}">
             {% endif %}
             <h3>{{sweatshirt.name}}</h3>
-            <p>{{sweatshirt.price}}</p>
+            <p>{{sweatshirt.price}} €</p>
 
             {% if app.user %}
                 <button class="btn"><a href="{{ path('app_product_show', {'id': sweatshirt.id}) }}">Voir</a></button>
