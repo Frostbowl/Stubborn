@@ -2,15 +2,62 @@
 
 {% extends 'header.html.twig' %}
 
-{% block title %}Modifier un Sweatshirt{% endblock %}
-
 {% block body %}
-    <h1>Modifier un Sweatshirt</h1>
-
-    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-        {{ form_widget(form) }}
-        <button class="btn">Enregistrer les modifications</button>
-    {{ form_end(form) }}
-
-    <a href="{{ path('app_sweatshirt_list') }}">Retour à la liste</a>
+    <main>
+        <div class="form-edit">
+            <h1>Modifier un Sweatshirt</h1>
+                {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                    <section class="edit-container">
+                        <div class="edit-group">
+                            <label>Photo</label>
+                            <img id="imgPreview" src="#" style="display: none; max-width: 150px; max-height: 150px;"/>
+                            {{form_widget(form.imageFile, {'attr': {'onchange': 'previewImage(event)'}})}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.name)}}
+                            {{form_widget(form.name)}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.price)}}
+                            {{form_widget(form.price)}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.stockXS)}}
+                            {{form_widget(form.stockXS)}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.stockS)}}
+                            {{form_widget(form.stockS)}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.stockM)}}
+                            {{form_widget(form.stockM)}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.stockL)}}
+                            {{form_widget(form.stockL)}}
+                        </div>
+                        <div class="edit-group">
+                            {{form_label(form.stockXL)}}
+                            {{form_widget(form.stockXL)}}
+                        </div>
+                        <div class="form-group">
+                            <button class="btn">Enregistrer les modifications</button>
+                        </div>
+                    </section>
+                {{ form_end(form) }}
+            <a href="{{ path('app_sweatshirt_list') }}">Retour à la liste</a>
+        </div>
+        <script>
+            function previewImage(event){
+                var reader = new FileReader();
+                reader.onload = function(){
+                    var output = document.getElementById('imgPreview');
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
+    </main>
 {% endblock %}

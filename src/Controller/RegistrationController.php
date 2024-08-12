@@ -47,9 +47,15 @@ class RegistrationController extends AbstractController
                 ->context([
                     'user'=>$user,
                 ]);
-            $mailer->send($email);
+            try {
+                $mailer->send($email);
+                // Optionnel : message de succès
+            } catch (\Exception $e) {
+                    // Optionnel : gestion des erreurs
+                $this->addFlash('error', 'Unable to send email: ' . $e->getMessage());
+            }
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

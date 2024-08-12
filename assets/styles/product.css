@@ -69,7 +69,9 @@ article input{
 form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     height: 100%;
 }
 
@@ -85,4 +87,28 @@ form {
     position: absolute;
     right:38rem;
     bottom:28rem;
+}
+
+
+.form-edit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.edit-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 12rem;
+    border: 2px solid black;
+
+}
+
+.edit-group{
+    display: flex;
+    width: 8rem;
+    flex-direction: column;
+    justify-content: space-around;
 }

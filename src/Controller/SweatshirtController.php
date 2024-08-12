@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class SweatshirtController extends AbstractController
 {
-    #[Route('/back-office/sweatshirt/list', name: 'app_sweatshirt_list')]
+    #[Route('/admin', name: 'app_sweatshirt_list')]
     public function list(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sweatshirts = $entityManager->getRepository(Sweatshirt::class)->findAll();
@@ -57,7 +57,7 @@ class SweatshirtController extends AbstractController
         ]);
     }
 
-    #[Route('/back-office/sweatshirt/edit/{id}', name: 'app_sweatshirt_edit')]
+    #[Route('/admin/edit/{id}', name: 'app_sweatshirt_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, Sweatshirt $sweatshirt): Response
     {
         $form = $this->createForm(SweatshirtType::class, $sweatshirt);
@@ -97,7 +97,7 @@ class SweatshirtController extends AbstractController
         ]);
     }
 
-    #[Route('/back-office/sweatshirt/delete/{id}', name: 'app_sweatshirt_delete')]
+    #[Route('/admin/delete/{id}', name: 'app_sweatshirt_delete')]
     public function delete(Request $request, EntityManagerInterface $entityManager, Sweatshirt $sweatshirt): RedirectResponse
     {
         if ($this->isCsrfTokenValid('delete' . $sweatshirt->getId(), $request->request->get('_token'))) {
