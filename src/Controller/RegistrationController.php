@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\SendMailService;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,8 +18,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
+    private $sendMailService;
+    public function __construct(SendMailService $sendMailService)
+    {
+        $this->sendMailService = $sendMailService;
+    }
+
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -39,21 +46,13 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $email = (new TemplatedEmail())
-                ->from(new Address('no-reply@localhost', 'Stubborn'))
-                ->to($user->getEmail())
-                ->subject('Confirmation d\'inscription')
-                ->htmlTemplate('emails/registration_confirmation.html.twig')
-                ->context([
-                    'user'=>$user,
-                ]);
-            try {
-                $mailer->send($email);
-                // Optionnel : message de succès
-            } catch (\Exception $e) {
-                    // Optionnel : gestion des erreurs
-                $this->addFlash('error', 'Unable to send email: ' . $e->getMessage());
-            }
+            $this->sendMailService->send(
+                'no-reply@stubborn.com',
+                $user->getEmail(),
+                'Confirmation d\'inscription',
+                'registration_confirmation',
+                ['user'=>$user]
+            );
 
             return $this->redirectToRoute('app_login');
         }

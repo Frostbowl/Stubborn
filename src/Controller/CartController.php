@@ -78,8 +78,71 @@ class CartController extends AbstractController
     }
     
     #[Route('/cart/success', name: 'app_cart_success')]
-    public function success(SessionInterface $session): Response
+    public function success(SessionInterface $session, EntityManagerInterface $entityManager): Response
     {
+        $cart = $session->get('cart', []);
+        $lineItems = [];
+
+        foreach($cart as $item){
+            $sweatshirt = $entityManager->getRepository(Sweatshirt::class)->find($item['id']);
+            if($sweatshirt){
+                switch($item['size']){
+                    case 'XS':
+                        $currentStock = $sweatshirt->getStockXS();
+                        if($currentStock>0){
+                            $sweatshirt->setStockXS($currentStock - 1);
+                        } else {
+                            return $this->render('cart/stock_error.html.twig',[
+                                'message'=>'Le stock en taille XS de cet article n\'est plus disponible'
+                            ]);
+                        }
+                        break;
+                    case 'S':
+                        $currentStock = $sweatshirt->getStockS();
+                        if($currentStock>0){
+                            $sweatshirt->setStockS($currentStock - 1);
+                        } else {
+                            return $this->render('cart/stock_error.html.twig',[
+                                'message'=>'Le stock en taille S de cet article n\'est plus disponible'
+                            ]);
+                        }
+                        break;
+                    case 'M':
+                        $currentStock = $sweatshirt->getStockM();
+                        if($currentStock>0){
+                            $sweatshirt->setStockM($currentStock - 1);
+                        } else {
+                            return $this->render('cart/stock_error.html.twig',[
+                                'message'=>'Le stock en taille M de cet article n\'est plus disponible'
+                            ]);
+                        }
+                        break;
+                    case 'L':
+                        $currentStock = $sweatshirt->getStockL();
+                        if($currentStock>0){
+                            $sweatshirt->setStockL($currentStock - 1);
+                        } else {
+                            return $this->render('cart/stock_error.html.twig',[
+                                'message'=>'Le stock en taille L de cet article n\'est plus disponible'
+                            ]);
+                        }
+                        break;
+                    case 'XL':
+                        $currentStock = $sweatshirt->getStockXL();
+                        if($currentStock>0){
+                            $sweatshirt->setStockXL($currentStock - 1);
+                        } else {
+                            return $this->render('cart/stock_error.html.twig',[
+                                'message'=>'Le stock en taille XL de cet article n\'est plus disponible'
+                            ]);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        $entityManager->flush();
         $session->remove('cart');
         $homeUrl = $this->generateUrl('app_home', [], \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL);
         return new Response('<h1>Paiement réussi</h1><br><p><a href="'. $homeUrl . '">Retour à l\'accueil</a></p>');
