@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande Annulée{% endblock %}
+
+{% block body %}
+    <h1>{{ message }}</h1>
+    <p>Votre commande a été annulée. Vous pouvez réessayer plus tard.</p>
+    <a href="{{ path('app_cart') }}">Retour au panier</a>
+{% endblock %}

@@ -36,7 +36,9 @@
             <p>Total: {{total}} €</p>
         </div>
         <div class="cartBtn">
-            <button class="end">Finaliser ma commande</button>
+            <form action="{{path('app_cart_checkout') }}" method="POST">
+                <button type="submit" class="end">Finaliser ma commande</button>
+            </form>
             <button class="continue"><a href="{{path('app_shop') }}">Continuer mes achats</a></button>
         </div>
     </section>

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande Réussie{% endblock %}
+
+{% block body %}
+    <h1>{{ message }}</h1>
+    <p>Merci pour votre achat !</p>
+    <a href="{{ path('app_home') }}">Retour à l'accueil</a>
+{% endblock %}
