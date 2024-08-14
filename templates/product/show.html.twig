@@ -15,10 +15,12 @@
             <p>Prix: {{ sweatshirt.price }} €</p>
         </div>
 
-        <div class="sizeSelector">
+        <div>
             {{ form_start(form) }}
-                {{ form_widget(form.size) }}  <!-- Le sélecteur de taille -->
-                {{ form_widget(form.submit) }} <!-- Le bouton -->
+                <div  class="size-selector">
+                    {{ form_widget(form.size) }}  <!-- Le sélecteur de taille -->
+                    {{ form_widget(form.submit) }} <!-- Le bouton -->
+                </div>
             {{ form_end(form) }}
         </div>
 

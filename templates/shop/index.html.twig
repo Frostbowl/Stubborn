@@ -19,9 +19,13 @@
         {% for sweatshirt in sweatshirts %}
             <article class="prod-list">
                 <img src="{{asset ('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}">
-                <h3>{{ sweatshirt.name }}</h3>
-                <p>{{ sweatshirt.price }}</p>
-                <button class="btn"><a href=" {{path('app_product_show', {'id': sweatshirt.id}) }} ">Voir</a></button>
+                <div class="shop-info">
+                    <div>
+                        <h3>{{ sweatshirt.name }}</h3>
+                        <p>{{ sweatshirt.price }}</p>
+                    </div>
+                    <button class="btn"><a href=" {{path('app_product_show', {'id': sweatshirt.id}) }} ">Voir</a></button>
+                </div>
             </article> 
         {% endfor %}
     </section>  

@@ -2,6 +2,21 @@
     box-sizing: border-box;
 }
 
+body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex-grow: 1;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -9,6 +24,11 @@ header {
     padding: 0 2rem;
     background-color: #f8f9fa;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer{
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .register{
@@ -43,6 +63,11 @@ nav a{
     font-weight: bold;
     color: black;
 }
+
+img{
+    border: 1px solid black;
+}
+
 header img {
     width: 10rem;
 }

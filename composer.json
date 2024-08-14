@@ -82,11 +82,14 @@
             "importmap:install": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@phpunit"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
-        ]
+            "@auto-scripts",
+            "@phpunit"
+        ],
+        "phpunit": "php bin/phpunit --filter testAddToCart"
     },
     "conflict": {
         "symfony/symfony": "*"

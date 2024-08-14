@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        public: true
+        autowire: true
+        autoconfigure: true
+
+
+    Symfony\Component\HttpFoundation\Session\Session:
+        public: true
+        factory: ['Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage', 'createStorage']
+        arguments:
+            - { 'save_path': '%kernel.project_dir%/var/sessions/test' }

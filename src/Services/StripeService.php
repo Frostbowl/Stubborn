@@ -20,7 +20,7 @@ class StripeService
 
         $session = Session::create([
             'payment_method_types'=>['card'],
-            'line_items'=>[$lineItems],
+            'line_items'=>$lineItems,
             'mode'=>'payment',
             'success_url'=> $successUrl,
             'cancel_url'=> $cancelUrl,

@@ -8,9 +8,34 @@
 .home-product article{
     border: 1px solid black;
     padding: 0.4rem;
+    width: 20rem;
 }
 
 .information{
     border-top: 1px solid black;
     width: 100%;
+}
+
+.home-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.home-bottom{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+
+.home-bottom .btn{
+    margin-bottom: 0;
+}
+
+.homepage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
 }

@@ -1,19 +1,26 @@
 {% extends 'header.html.twig' %}
 
 {% block body %}
-<main>
+<main class="homepage">
     <section class="home-product">
         {% for sweatshirt in sweatshirts %}
             <article>
-            {% if sweatshirt.imageName %}
-                <img src="{{asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}">
-            {% endif %}
-            <h3>{{sweatshirt.name}}</h3>
-            <p>{{sweatshirt.price}} €</p>
+                <div class="home-img">
+                    {% if sweatshirt.imageName %}
+                        <img src="{{asset('uploads/images/sweatshirts/' ~ sweatshirt.imageName) }}">
+                    {% endif %}
+                </div>
+                <div class="home-bottom">
+                    <div class="home-info">
+                        <h3>{{sweatshirt.name}}</h3>
+                        <p>{{sweatshirt.price}} €</p>
+                    </div>
+                    {% if app.user %}
+                        <button class="btn"><a href="{{ path('app_product_show', {'id': sweatshirt.id}) }}">Voir</a></button>
+                    {% endif %} 
+                </div>
 
-            {% if app.user %}
-                <button class="btn"><a href="{{ path('app_product_show', {'id': sweatshirt.id}) }}">Voir</a></button>
-            {% endif %}
+            
             </article>
         {% endfor %}
     </section>

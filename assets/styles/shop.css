@@ -13,7 +13,6 @@
     border: 2px solid black;
     width: 30%;
     margin-bottom: 2rem;
-    padding-left: 2rem;
 }
 
 .mainShop{
@@ -35,4 +34,11 @@
 .filter{
     display: flex;
     justify-content: center;
+}
+
+.shop-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
