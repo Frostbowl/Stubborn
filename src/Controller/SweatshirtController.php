@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Sweatshirt;
 use App\Form\SweatshirtType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,11 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
+#[IsGranted('ROLE_ADMIN')]
 class SweatshirtController extends AbstractController
 {
-    #[Route('/admin', name: 'app_sweatshirt_list')]
+
+    #[Route('/admin/product', name: 'app_sweatshirt_list')]
     public function list(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sweatshirts = $entityManager->getRepository(Sweatshirt::class)->findAll();

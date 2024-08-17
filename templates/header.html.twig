@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('styles/login.css')}}">
     <link rel="stylesheet" href="{{asset('styles/shop.css')}}">
     <link rel="stylesheet" href="{{asset('styles/cart.css')}}">
+    <link rel="stylesheet" href="{{asset('styles/users.css')}}">
 </head>
 <body class="wrapper">
     {% block header %}
@@ -21,7 +22,9 @@
         <nav>
             <a href="{{ path('app_home') }}" class="{{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}">Accueil</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="{{ path('app_sweatshirt_list') }}" class="{{ app.request.attributes.get('_route') == 'app_sweatshirt_list' ? 'active' : '' }}">Back-Office</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_admin_dashboard') }}" class="{{ app.request.attributes.get('_route') == 'app_admin_dashboard' ? 'active' : '' }}">Back-Office</a>
+                {% endif %}
                 <a href="{{ path('app_shop') }}" class="{{ app.request.attributes.get('_route') == 'app_shop' ? 'active' : '' }}">Boutique</a>
                 <a href="{{ path('app_cart') }}" class="{{ app.request.attributes.get('_route') == 'app_cart' ? 'active' : '' }}">Panier</a>
                 <a href="{{ path('app_logout') }}" class="{{ app.request.attributes.get('_route') == 'app_logout' ? 'active' : '' }}">Se déconnecter</a>

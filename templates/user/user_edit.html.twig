@@ -1,0 +1,16 @@
+{% extends 'header.html.twig' %}
+{% block body %}
+<main class="back">
+    <section>
+        {{ form_start(form) }}
+        <div>
+            {{ form_label(form.roles) }}
+            {{ form_widget(form.roles) }}
+        </div>
+        <div>
+            {{ form_widget(form.save) }}
+        </div>
+        {{ form_end(form) }}
+    </section>
+</main>
+{% endblock %}

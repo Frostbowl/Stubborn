@@ -1,0 +1,35 @@
+{% extends 'header.html.twig' %}
+
+{% block body %}
+
+<main class="back">
+        
+
+            {% for user in users %}
+                <div class="usersList">
+                    <article>
+                        <h3>ID de l'utilisateur: </h3>
+                        <p>{{ user.id }}</p>
+                    </article>
+                    <article>
+                        <h3>Nom de l'utilisateur: </h3>
+                        <p>{{ user.name }}</p>
+                    </article>
+                    <article>
+                        <h3>Email de l'utilisateur: </h3>
+                        <p>{{ user.email }}</p>
+                    </article>
+                    <article>
+                        <h3>Rôle de l'utilisateur: </h3>
+                        {% for role in user.roles %}
+                            {{ role }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </article>
+                    <a href="{{ path('app_user_edit', {id:user.id}) }}">Modifier</a>
+                </div>
+            {% endfor %}
+
+
+</main>
+
+{% endblock %}

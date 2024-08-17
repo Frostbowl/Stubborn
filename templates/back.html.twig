@@ -1,0 +1,13 @@
+{% extends 'header.html.twig' %}
+
+{% block body %}
+
+    <main class="back">
+        <h1>Tableau de Bord Admin</h1>
+        <div class="admin-options">
+            <a href="{{ path('app_sweatshirt_list') }}" class="btn btn-primary">Gestion Produits</a><br>
+            <a href="{{ path('app_user_list') }}" class="btn btn-primary">Gestion Utilisateur</a>
+        </div>
+    </main>
+
+{% endblock %}
